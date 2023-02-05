@@ -29,5 +29,9 @@
         {
             this.score.Add(number);
         }
+        public void AddNegativeScore(int number)
+        {
+            this.score.Remove(number);
+        }
     }
 }
