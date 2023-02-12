@@ -2,36 +2,38 @@
 {
     public class Employee
     {
-        private List<int> score = new List<int>();
+        private List<float> grades = new List<float>();
 
-        public Employee(string imię, string nazwisko, string wiek)
+        public Employee(string name, string surname)
         {
-            this.Imię = imię;
-            this.Nazwisko = nazwisko;
-            this.Wiek = wiek;
+            this.Name = name;
+            this.Surname = surname;
         }
 
-        public string Imię { get; private set; }
-        public string Nazwisko { get; private set; }
-        public string Wiek { get; private set; }
-
-
-        public int Result
+        public string Name { get; private set; }
+        public string Surname { get; private set; }
+     
+       
+        public void AddGrade(float grade)
         {
-            get
+            this.grades.Add(grade);
+        }
+
+        public Statistics GetStatistics()
+        {
+            var statistics = new Statistics();
+            statistics.Average = 0;
+            statistics.Max = float.MinValue;
+            statistics.Min = float.MaxValue;
+
+            foreach(var grade in this.grades)
             {
-                return this.score.Sum();
+                statistics.Max = Math.Max(statistics.Max, grade);
+                statistics.Min = Math.Min(statistics.Min, grade);
+                statistics.Average += grade;
             }
-        }
-
-
-        public void AddScore(int number)
-        {
-            this.score.Add(number);
-        }
-        public void AddNegativeScore(int number)
-        {
-            this.score.Remove(number);
+            statistics.Average = statistics.Average / this.grades.Count;       
+            return statistics;
         }
     }
 }

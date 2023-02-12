@@ -1,23 +1,50 @@
 
 namespace ChallengeApp.Tests
 {
-    public class Tests
-    { 
+    public class EmployeeTests
+    {
         [Test]
-        public void WhenUserCollectTwoScores_ShouldCorrectResult()
+        public void TestStatisticsForMin()
         {
-            // arrange
-            var employee = new Employee("Adam", "Kowalski", "43");
-            employee.AddScore(5);
-            employee.AddScore(6);
-            employee.AddScore(-5);
-            employee.AddScore(2);
+            var employee = new Employee("Adam", "Kowalski");
+            employee.AddGrade(5);
+            employee.AddGrade(6);
+            employee.AddGrade(5);
+            employee.AddGrade(2);
 
-            // act
-            var result = employee.Result;
+            var statistics = employee.GetStatistics();
 
-            //assert
-            Assert.AreEqual(8, result);
+            Assert.AreEqual(statistics.Min, 2);
+        }
+
+        [Test]
+        public void TestStatisticsForMax()
+        {
+            var employee = new Employee("Tomasz", "G³owacki");
+            employee.AddGrade(5);
+            employee.AddGrade(4);
+            employee.AddGrade(6);
+            employee.AddGrade(-1);
+
+            var ststistics = employee.GetStatistics();
+
+            Assert.AreEqual(ststistics.Max, 6);
+        }
+
+        [Test]
+        public void TestStatisticForAverage()
+        {
+            var employee = new Employee("Krzysztof", "Nowak");
+            employee.AddGrade(6);
+            employee.AddGrade(-3);
+            employee.AddGrade(4);
+            employee.AddGrade(2);
+
+            var statisctics = employee.GetStatistics();
+
+            Assert.AreEqual(statisctics.Average, 2.25);
         }
     }
 }
+
+
