@@ -1,7 +1,8 @@
 ﻿using ChallengeApp;
 
 var employee = new Employee("Tomasz", "Kowalski");
-employee.AddGrade(2);
+employee.AddGrade("Krzysiek");
+employee.AddGrade("200");
 employee.AddGrade(5);
 employee.AddGrade(5);
 var statistic = employee.GetStatistics();
@@ -14,7 +15,7 @@ Console.WriteLine($"Max: {statistic.Max}");
 
 
 
-
+ 
 
 
 
