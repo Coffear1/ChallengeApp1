@@ -35,14 +35,40 @@ namespace ChallengeApp.Tests
         public void TestStatisticForAverage()
         {
             var employee = new Employee("Krzysztof", "Nowak");
-            employee.AddGrade(6);
-            employee.AddGrade(-3);
+            employee.AddGrade(10);
+            employee.AddGrade(-2);
             employee.AddGrade(4);
             employee.AddGrade(2);
 
             var statisctics = employee.GetStatistics();
 
-            Assert.AreEqual(statisctics.Average, 2.25);
+            Assert.AreEqual(statisctics.Average, 3, 50);
+        }
+
+        [Test]
+        public void TestStatisticForAverageLetters()
+        {
+            var employee = new Employee("Daniel", "Gawlas");
+            employee.AddGrade(10);
+            employee.AddGrade(20);
+            employee.AddGrade(35);
+
+            var statistics = employee.GetStatistics();
+
+            Assert.AreEqual(statistics.AverageLetter, 'D');
+        }
+
+        [Test]
+        public void IfAddGradeAsChar_ShouldReturnAverage()
+        {
+            var employee = new Employee("Zbigniew", "Michalak");
+            employee.AddGrade('a');
+            employee.AddGrade('c');
+            employee.AddGrade('e');
+
+            var statistics = employee.GetStatistics();
+
+            Assert.AreEqual(statistics.Average, 60);
         }
     }
 }
