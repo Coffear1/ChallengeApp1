@@ -1,18 +1,12 @@
-﻿using System.Data;
-using System.Diagnostics;
-using System.Threading.Tasks.Sources;
-
-namespace ChallengeApp
+﻿namespace ChallengeApp
 {
-    public class Employee
+    public class Employee : Person
     {
         private List<float> grades = new List<float>();
 
-        public Employee(string name, string surname)
-        {
-            this.Name = name;
-            this.Surname = surname;
-
+        public Employee(string name, string surname,char sex, int age)
+            : base(name, surname, sex, age)
+        {                      
         }
 
         public string Name { get; private set; }
@@ -41,6 +35,7 @@ namespace ChallengeApp
                 throw new Exception("String is not float");
             }
         }
+
         public void AddGrade(double grade)
         {
             var DoubleInInt = (float)grade;
@@ -52,8 +47,9 @@ namespace ChallengeApp
             this.AddGrade(LongInInt);
         }
         public void AddGrade(char grade)
-        {   
-            switch(grade)
+        {
+
+            switch (grade)
             {
                 case 'A':
                 case 'a':
@@ -76,8 +72,11 @@ namespace ChallengeApp
                     this.grades.Add(20);
                     break;
                 default:
-                    throw new Exception("Niepoprawna litera");
-            }            
+                    {
+                        throw new Exception("Niepoprawna litera");
+                    }
+            }
+
         }
         public Statistics GetStatistics() //pętla foreach
         {
@@ -93,8 +92,8 @@ namespace ChallengeApp
                 statistics.Average += grade;
             }
             statistics.Average = statistics.Average / this.grades.Count;
-            
-            switch(statistics.Average)
+
+            switch (statistics.Average)
             {
                 case var average when average >= 80:
                     statistics.AverageLetter = 'A';
@@ -114,8 +113,8 @@ namespace ChallengeApp
             }
             return statistics;
 
-        }  
-	}
+        }
+    }
 }
-    
+
 
