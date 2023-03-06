@@ -1,17 +1,20 @@
 ﻿namespace ChallengeApp
 {
-    public class Employee : Person
+    public class Employee : IEmployee
     {
         private List<float> grades = new List<float>();
 
-        public Employee(string name, string surname,char sex, int age)
-            : base(name, surname, sex, age)
-        {                      
+        public Employee(string name, string surname, char sex, int age)
+        {
+            this.Name = name;
+            this.Surname = surname;
+            this.Sex = sex;
+            this.Age = age;
         }
-
         public string Name { get; private set; }
         public string Surname { get; private set; }
-
+        public char Sex { get; private set; }
+        public int Age { get; private set; }
 
         public void AddGrade(float grade)
         {
@@ -24,31 +27,26 @@
                 throw new Exception("invalid grade value");
             }
         }
-        public void AddGrade(string grade)
-        {
-            if (float.TryParse(grade, out float result))
-            {
-                this.AddGrade(result);
-            }
-            else
-            {
-                throw new Exception("String is not float");
-            }
-        }
-
         public void AddGrade(double grade)
         {
-            var DoubleInInt = (float)grade;
-            this.AddGrade(DoubleInInt);
+            float DoubleAsFloat = (float)grade;
+            this.AddGrade(DoubleAsFloat);
         }
         public void AddGrade(long grade)
         {
-            var LongInInt = (float)grade;
-            this.AddGrade(LongInInt);
+            float LongAsFloat = (float)grade;
+            this.AddGrade(LongAsFloat);
+        }
+        public void AddGrade(string grade)
+        {
+            if(float.TryParse(grade, out float result))
+            {
+                this.grades.Add(result);
+            }
+
         }
         public void AddGrade(char grade)
         {
-
             switch (grade)
             {
                 case 'A':
@@ -71,14 +69,12 @@
                 case 'e':
                     this.grades.Add(20);
                     break;
-                default:
-                    {
-                        throw new Exception("Niepoprawna litera");
-                    }
+                default:                 
+                    throw new Exception("Wpisz literę od A do E ");                    
             }
 
         }
-        public Statistics GetStatistics() //pętla foreach
+        public Statistics GetStatistics() 
         {
             var statistics = new Statistics();
             statistics.Average = 0;
