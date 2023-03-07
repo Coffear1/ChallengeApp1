@@ -47,8 +47,6 @@
                 throw new NotImplementedException();
             }
 
-
-
             public void AddGrade(string grade)
             {
                 switch (grade)
@@ -111,9 +109,17 @@
                     case "1":
                         this.grades.Add(0);
                         break;
-                    default:                       
-                        throw new Exception("Wybierz ocenę od 1 do 6");
-                }
+                    default:
+                    if (float.TryParse(grade, out float result))
+                    {
+                        this.AddGrade((float)result);
+                    }
+                    else
+                    {
+                        throw new Exception("Podaj ocenę od 1 do 6");
+                    }
+                    break;
+            }
             }
 
         public Statistics GetStatistics()

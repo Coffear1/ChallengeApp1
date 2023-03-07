@@ -8,8 +8,8 @@ namespace ChallengeApp
         char Sex { get; }
         int Age { get; }
         void AddGrade(float grade);
-        void AddGrade(string grade);             
-        void AddGrade(char grade);               
+        void AddGrade(char grade);    
+        void AddGrade(string grade);
         public void AddGrade(double grade);
         public void AddGrade(long grade);
         Statistics GetStatistics();
