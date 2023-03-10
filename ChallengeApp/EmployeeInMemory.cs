@@ -37,27 +37,48 @@ namespace ChallengeApp
 
         public override void AddGrade(string grade)
         {
+           
             switch (grade)
             {
                 case "A":
                 case "a":
                     this.grades.Add(100);
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                     break;
                 case "B":
                 case "b":
                     this.grades.Add(80);
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                     break;
                 case "C":
                 case "c":
                     this.grades.Add(60);
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                     break;
                 case "D":
                 case "d":
                     this.grades.Add(40);
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                     break;
                 case "E":
                 case "e":
                     this.grades.Add(20);
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                     break;
                 default:
                     if (float.TryParse(grade, out float result))
@@ -70,10 +91,7 @@ namespace ChallengeApp
                     }
                     break;
             }
-            if(GradeAdded != null)
-            {
-                GradeAdded(this, new EventArgs());
-            }
+            
         }
 
         public override void AddGrade(double grade)

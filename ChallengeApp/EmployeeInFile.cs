@@ -45,12 +45,20 @@ namespace ChallengeApp
                     {
                         writer.WriteLine(100);
                     }
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                     break;
                 case "B":
                 case "b":
                     using (var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(80);
+                    }
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
                     }
                     break;
                 case "C":
@@ -59,6 +67,10 @@ namespace ChallengeApp
                     {
                         writer.WriteLine(60);
                     }
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                     break;
                 case "D":
                 case "d":
@@ -66,12 +78,20 @@ namespace ChallengeApp
                     {
                         writer.WriteLine(40);
                     }
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                     break;
                 case "E":
                 case "e":
                     using (var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(20);
+                    }
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
                     }
                     break;
                 default:
@@ -85,10 +105,7 @@ namespace ChallengeApp
                     }
                     break;
             }
-            if(GradeAdded != null)
-            {
-                GradeAdded(this, new EventArgs());
-            }
+            
         }
 
         public override void AddGrade(double grade)
