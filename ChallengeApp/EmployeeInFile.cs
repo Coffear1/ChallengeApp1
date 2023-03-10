@@ -3,12 +3,14 @@ namespace ChallengeApp
 {
     public class EmployeeInFile : EmployeeBase
     {
+       
+        public override event GradeAddedDelegate GradeAdded;
+
         private const string fileName = "grades.txt";
         public EmployeeInFile(string name, string surname, char sex, int age)
             : base(name, surname, sex, age)
         {
         }
-
         public override void AddGrade(float grade)
         {
             if (grade >= 0 && grade <= 100)
@@ -16,6 +18,10 @@ namespace ChallengeApp
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
+                    if (GradeAdded != null)
+                    {
+                        GradeAdded(this, new EventArgs());
+                    }
                 }
             }
             else
@@ -78,6 +84,10 @@ namespace ChallengeApp
                         throw new Exception("String nie jest floatem");
                     }
                     break;
+            }
+            if(GradeAdded != null)
+            {
+                GradeAdded(this, new EventArgs());
             }
         }
 
