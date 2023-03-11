@@ -20,10 +20,6 @@ namespace ChallengeApp
             {
                 this.grades.Add(grade);
 
-                if(GradeAdded != null)
-                {
-                    GradeAdded(this, new EventArgs());
-                }
             }
             else
             {
@@ -42,43 +38,23 @@ namespace ChallengeApp
             {
                 case "A":
                 case "a":
-                    this.grades.Add(100);
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
+                    this.grades.Add(100);                  
                     break;
                 case "B":
                 case "b":
-                    this.grades.Add(80);
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
+                    this.grades.Add(80);                  
                     break;
                 case "C":
                 case "c":
                     this.grades.Add(60);
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
                     break;
                 case "D":
                 case "d":
-                    this.grades.Add(40);
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
+                    this.grades.Add(40);                  
                     break;
                 case "E":
                 case "e":
-                    this.grades.Add(20);
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
+                    this.grades.Add(20);                  
                     break;
                 default:
                     if (float.TryParse(grade, out float result))
@@ -91,7 +67,10 @@ namespace ChallengeApp
                     }
                     break;
             }
-            
+            if (GradeAdded != null)
+            {
+                GradeAdded(this, new EventArgs());
+            }
         }
 
         public override void AddGrade(double grade)

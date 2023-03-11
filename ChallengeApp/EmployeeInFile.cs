@@ -18,10 +18,6 @@ namespace ChallengeApp
                 using (var writer = File.AppendText(fileName))
                 {
                     writer.WriteLine(grade);
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
                 }
             }
             else
@@ -44,44 +40,28 @@ namespace ChallengeApp
                     using(var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(100);
-                    }
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
+                    }                                                           
                     break;
                 case "B":
                 case "b":
                     using (var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(80);
-                    }
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
+                    }                                                          
                     break;
                 case "C":
                 case "c":
                     using (var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(60);
-                    }
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
+                    }                                                                 
                     break;
                 case "D":
                 case "d":
                     using (var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(40);
-                    }
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
+                    }                                                                               
                     break;
                 case "E":
                 case "e":
@@ -89,10 +69,7 @@ namespace ChallengeApp
                     {
                         writer.WriteLine(20);
                     }
-                    if (GradeAdded != null)
-                    {
-                        GradeAdded(this, new EventArgs());
-                    }
+                  
                     break;
                 default:
                     if (float.TryParse(grade, out float result))
@@ -105,7 +82,10 @@ namespace ChallengeApp
                     }
                     break;
             }
-            
+            if (GradeAdded != null)
+            {
+                GradeAdded(this, new EventArgs());
+            }
         }
 
         public override void AddGrade(double grade)
