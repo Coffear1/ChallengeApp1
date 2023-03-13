@@ -6,19 +6,23 @@ namespace ChallengeApp
        
         public override event GradeAddedDelegate GradeAdded;
 
+        
+
         private const string fileName = "grades.txt";
+
+        
         public EmployeeInFile(string name, string surname, char sex, int age)
             : base(name, surname, sex, age)
         {
         }
         public override void AddGrade(float grade)
-        {
-            if (grade >= 0 && grade <= 100)
+       {
+           if (grade >= 0 && grade <= 100)
             {
-                using (var writer = File.AppendText(fileName))
-                {
-                    writer.WriteLine(grade);
-                }
+               using (var writer = File.AppendText(fileName))
+               {
+                   writer.WriteLine(grade);
+               }
             }
             else
             {
@@ -35,8 +39,8 @@ namespace ChallengeApp
         {
             switch (grade)
             {
-                case "A":
-                case "a":
+              case "A":
+               case "a":
                     using(var writer = File.AppendText(fileName))
                     {
                         writer.WriteLine(100);
@@ -69,7 +73,7 @@ namespace ChallengeApp
                     {
                         writer.WriteLine(20);
                     }
-                  
+                 
                     break;
                 default:
                     if (float.TryParse(grade, out float result))
@@ -99,11 +103,10 @@ namespace ChallengeApp
             float LongAsFloat = (float)grade;
             this.AddGrade(LongAsFloat);
         }
-
         public override Statistics GetStatistics()
         {
-            var gradesFromFile =this.ReadGradesFromFile();
-            var result = this.CountStatistics(gradesFromFile);
+            var gradesFromFile = this.ReadGradesFromFile();
+            var result = this.CountStatistics(gradesFromFile);                    
             return result;
         }
         private List<float> ReadGradesFromFile()
@@ -124,39 +127,13 @@ namespace ChallengeApp
             }
             return grades;
         }
-        private Statistics CountStatistics(List<float> grades)
+        private Statistics CountStatistics(List<float>grades)
         {
             var statistics = new Statistics();
-            statistics.Average = 0;
-            statistics.Max = float.MinValue;
-            statistics.Min = float.MaxValue;
-
-            foreach (var grade in grades)
+            foreach (var grade in this.grades)
             {
-                statistics.Max = Math.Max(statistics.Max, grade);
-                statistics.Min = Math.Min(statistics.Min, grade);
-                statistics.Average += grade;
-            }
-            statistics.Average = statistics.Average / grades.Count;
-
-            switch (statistics.Average)
-            {
-                case var average when average >= 80:
-                    statistics.AverageLetter = 'A';
-                    break;
-                case var average when average >= 60:
-                    statistics.AverageLetter = 'B';
-                    break;
-                case var average when average >= 40:
-                    statistics.AverageLetter = 'C';
-                    break;
-                case var average when average >= 20:
-                    statistics.AverageLetter = 'D';
-                    break;
-                default:
-                    statistics.AverageLetter = 'E';
-                    break;
-            }
+                statistics.AddGrade(grade);
+            }     
             return statistics;
         }
     }

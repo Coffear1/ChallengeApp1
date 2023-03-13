@@ -1,5 +1,4 @@
 ﻿using ChallengeApp;
-using System.Runtime.CompilerServices;
 
 Console.WriteLine("Witamy w Programie XYZ do oceny pracownika");
 Console.WriteLine("==========================================");
