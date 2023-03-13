@@ -119,7 +119,9 @@ namespace ChallengeApp
                     var line = reader.ReadLine();
                     while (line != null)
                     {
+#pragma warning disable CA1305 // Określ interfejs IFormatProvider
                         var number = float.Parse(line);
+#pragma warning restore CA1305 // Określ interfejs IFormatProvider
                         grades.Add(number);
                         line = reader.ReadLine();
                     }
@@ -130,7 +132,7 @@ namespace ChallengeApp
         private Statistics CountStatistics(List<float>grades)
         {
             var statistics = new Statistics();
-            foreach (var grade in this.grades)
+            foreach (var grade in grades)
             {
                 statistics.AddGrade(grade);
             }     
